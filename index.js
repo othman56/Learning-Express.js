@@ -1,12 +1,17 @@
-// we bring in our express module
+// we bring in our express module 
 const express = require('express');
+// we also want to be able to render a file so we bring in our path module
+const path = require('path')
 
 // storing the express function in a variable
 const app = express()
 
 // using a get request to specify routes
 app.get('/', (req,res) => {
-    res.send('<h1>Hello World</h1>')
+    // instead of this
+    // res.send('<h1>Hello World</h1>')
+    // we use the res.sendfile method
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 })
 
 // configuring our port

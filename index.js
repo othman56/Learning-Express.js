@@ -7,12 +7,15 @@ const path = require('path')
 const app = express()
 
 // using a get request to specify routes
-app.get('/', (req,res) => {
-    // instead of this
-    // res.send('<h1>Hello World</h1>')
-    // we use the res.sendfile method
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-})
+// app.get('/', (req,res) => {
+//     // instead of this
+//     // res.send('<h1>Hello World</h1>')
+//     // we use the res.sendfile method
+//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// })
+
+// making our folder a static folder for easy rendering of pages
+app.use(express.static(path.join(__dirname, 'public')))
 
 // configuring our port
 const PORT = process.env.PORT || 5000

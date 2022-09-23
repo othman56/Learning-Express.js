@@ -1,18 +1,18 @@
 // we bring in our express module 
 const express = require('express');
-// we also want to be able to render a file so we bring in our path module
 const path = require('path')
+const members = require('./Members')
+const logger = require('./middleware/logger')
 
-// storing the express function in a variable
+// storing the express module in a variable
 const app = express()
 
-// using a get request to specify routes
-// app.get('/', (req,res) => {
-//     // instead of this
-//     // res.send('<h1>Hello World</h1>')
-//     // we use the res.sendfile method
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// })
+app.use(logger)
+
+  
+// creating a route for members
+app.get('/api/members', (req,res) => 
+    res.json(members))
 
 // making our folder a static folder for easy rendering of pages
 app.use(express.static(path.join(__dirname, 'public')))

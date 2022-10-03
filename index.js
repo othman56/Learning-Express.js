@@ -1,21 +1,22 @@
 // we bring in our express module 
 const express = require('express');
 const path = require('path')
-const members = require('./Members')
 const logger = require('./middleware/logger')
-
-// storing the express module in a variable
 const app = express()
 
-app.use(logger)
-
-  
-// creating a route for members
-app.get('/api/members', (req,res) => 
-    res.json(members))
+// initializing middleware
+// app.use(logger)
 
 // making our folder a static folder for easy rendering of pages
 app.use(express.static(path.join(__dirname, 'public')))
+
+// Body Paraer Middleware
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
+
+// member api routes
+app.use('/api/members', require('./routes/api/members'))
 
 // configuring our port
 const PORT = process.env.PORT || 5000

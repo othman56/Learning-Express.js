@@ -32,9 +32,10 @@ router.get('/:id', (req,res) => {
     if(!newMember.name || !newMember.email) {
       return res.status(400).json({msg: 'please include a name and email'})
     }
-    members.push(newMember
-    )
+    members.push(newMember)
     res.json(members) 
+    // to redirect to our homepage and see new member
+    // res.redirect('/')
    })
 
 // update a member we use the put method
